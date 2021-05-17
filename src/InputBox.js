@@ -3,22 +3,30 @@ import './style.css';
 import TextView from './TextView';
 
 export default function InputBox() {
-  const [name, setName] = useState('');
-  const [data, setData] = useState('');
+  const [counter, setCounter] = useState(0);
+  const [errorMessage, setErrorMessage] = useState(false);
 
-  const handleChange = event => {
-    setName(event.target.value);
+  const onPlus = () => {
+    setCounter(prevCounter => prevCounter + 1);
+    if (counter >= 0) {
+      setErrorMessage(false);
+    }
   };
-  const onSubmit = () => {
-    setData(name);
+
+  const onMinus = () => {
+    if (counter != 0) {
+      setCounter(prevCounter => prevCounter - 1);
+    } else {
+      setErrorMessage(true);
+    }
   };
 
   return (
     <div>
-      <input type="text" name="name" value={name} onChange={handleChange} />
-      <input name="firstName" value={name} />
-      <button onClick={onSubmit}>Submit</button>
-      <TextView name={name} />{' '}
+      <button onClick={onPlus}>Plus</button>
+      <button onClick={onMinus}>Minus</button>
+      {errorMessage && <p>Should not be less than 0</p>}
+      <TextView name={counter} />{' '}
     </div>
   );
 }
