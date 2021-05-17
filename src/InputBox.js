@@ -6,7 +6,7 @@ export default function InputBox() {
   const [name, setName] = useState('');
   const [data, setData] = useState('');
 
-  const onInputChange = event => {
+  const handleChange = event => {
     setName(event.target.value);
   };
   const onSubmit = () => {
@@ -15,9 +15,10 @@ export default function InputBox() {
 
   return (
     <div>
-      <input type="text" name="name" value={name} onChange={onInputChange} />
+      <input type="text" name="name" value={name} onChange={handleChange} />
+      <input name="firstName" value={name} />
       <button onClick={onSubmit}>Submit</button>
-      <TextView abc={data} />{' '}
+      <TextView name={name} />{' '}
     </div>
   );
 }

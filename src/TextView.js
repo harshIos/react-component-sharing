@@ -1,4 +1,4 @@
 import React from 'react';
 export default function TextView(props) {
-  return <h1>Hello {props.abc}</h1>;
+  return <h1>Hello {props.name}</h1>;
 }
